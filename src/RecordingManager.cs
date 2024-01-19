@@ -107,7 +107,6 @@ public class RecordingManager
 
     private void onMidiInput(object? sender, MidiEventReceivedEventArgs args)
     {
-        Console.WriteLine("Midi input!");
         if (state == RecordingState.Recording)
         {
             timer.Stop();
