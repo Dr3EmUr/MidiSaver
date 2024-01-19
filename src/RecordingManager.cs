@@ -88,9 +88,17 @@ public class RecordingManager
                 file = currentRecording.ToFile();
             }
 
-            Console.WriteLine("Outputted file");
-            
+            // for some reason, I have to set the time to 100 bpm first and then at 120 bpm, else it doesn't get recorded into the file.
+            // The reason why I have to set it to 120 bpm is because that's the speed the MIDI is being recorded, apparently.
+
+            var manager = new TempoMapManager();
+            manager.SetTempo(0, new Tempo(600000));
+            manager.SetTempo(0, new Tempo(500000));
+
+            file.ReplaceTempoMap(manager.TempoMap);
             file.Write(currentPath);
+
+            Console.WriteLine("Outputted file");
         }
             
     }
