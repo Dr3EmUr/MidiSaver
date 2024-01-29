@@ -9,6 +9,7 @@ var connectedDevices = InputDevice.GetAll().ToList();
 List<RecordingManager> managers = new List<RecordingManager>();
 foreach(var device in connectedDevices)
 {
+    Console.WriteLine(device.Name + " Was found!");
     managers.Add(new RecordingManager(device));
 }
 
