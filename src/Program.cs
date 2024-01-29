@@ -4,17 +4,20 @@ using Melanchall.DryWetMidi.Multimedia;
 using System.Timers;
 using Melanchall.DryWetMidi.Interaction;
 
-InputDevice device = InputDevice.GetByName("CASIO USB-MIDI");
-RecordingManager manager = new RecordingManager(device);
+var connectedDevices = InputDevice.GetAll().ToList();
 
-// I commented this since the RecordingManager starts recording on MIDI input anyway, 
-// so there's no point in starting it manually here
-//
-// manager.StartRecording();
+List<RecordingManager> managers = new List<RecordingManager>();
+foreach(var device in connectedDevices)
+{
+    managers.Add(new RecordingManager(device));
+}
 
 Console.WriteLine("Listening for MIDI Events... press ENTER to save and exit the program");
 Console.ReadLine();
 
-manager.StopRecording(true);
+foreach(var manager in managers)
+{
+    manager.StopRecording(true);
+}
 
 Console.WriteLine("Saved!");
