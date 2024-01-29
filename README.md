@@ -13,4 +13,4 @@ playing random notes
 
 
 ### built with
-MidiSaver was written in c# using .NET 8
+MidiSaver was written in c# using .NET 8 and was built using [DryWetMidi](https://github.com/melanchall/drywetmidi)
